@@ -5,7 +5,7 @@ class InsuranceSystem:
     def __init__(self, list_of_clients = None):
         self.list_of_clients = list_of_clients or []
 
-    # Method for client creation. Next 3 methods (get_name, get_age and get_phone_number) serves for input validation.
+    # Method for client creation. Next 3 internal methods (get_name, get_age and get_phone_number) serves for input validation.
     def create_client(self):
         name = self._get_name("jméno")
         surname = self._get_name("příjmení")
@@ -13,7 +13,7 @@ class InsuranceSystem:
         phone_number = self._get_phone_number()
         client = Client(name, surname, age, phone_number)
         self.list_of_clients.append(client)
-        print("Data byla uložena.\n")
+        print("\nData byla uložena.\n")
     
     # Validates input name and surname - must contain only letters.
     def _get_name(self, input_type):
@@ -33,10 +33,10 @@ class InsuranceSystem:
                     return age
                 else:
                     print("\nVěk nemůže být záporná hodnota.")
-            except:
+            except ValueError:
                 print("\nVěk musí obsahovat pouze celá čísla.")
     
-    # Validates input phone number - must be number longer than 9 digits, can contain "+" or empty spaces, which will be both removed in validation process.
+    # Validates input phone number - must be number equal or longer than 9 digits, can contain "+" or empty spaces, which will be both removed in validation process.
     def _get_phone_number(self):
         while True:
             phone_number = input("Zadejte telefonní číslo pojištěného: \n")
@@ -82,9 +82,9 @@ class InsuranceSystem:
         confirmation = input("\nOpravdu chcete pojištěného smazat? (ano/ne): ").lower()
         if confirmation == "ano":
             del self.list_of_clients[index]
-            print(f"Pojištěný {client.name} {client.surname} ({client.age}) byl smazán z databáze.\n")
+            print(f"\nPojištěný {client.name} {client.surname} ({client.age}) byl smazán z databáze.\n")
 
-    # Allows to edit clients data based on users input choice (name,surname,age or phone number).
+    # Allows to edit clients data, based on users input choice (name,surname,age or phone number).
     def edit_client(self):
         print("\nÚPRAVA POJIŠTĚNÉHO")
         try:
@@ -115,7 +115,7 @@ class InsuranceSystem:
             else:
                 print("Tato možnost není v nabídce.")
 
-    # This method starts insurance program. Takes action based on users input choce.
+    # This method starts insurance program. Takes action based on users input choice.
     def start_insurance_system(self):
         while True:
             print("\n---------------------\nEvidence pojištěných\n---------------------")

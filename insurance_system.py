@@ -1,3 +1,5 @@
+import os
+
 from client import Client
 
 class InsuranceSystem:
@@ -135,5 +137,6 @@ class InsuranceSystem:
             else:
                 print("Tato možnost není v nabídce.")
             input("Pokračujte stisknutím klávesy enter.")
+            os.system("clear")
 
         print("\nProgram ukončen. Hezký den.")
